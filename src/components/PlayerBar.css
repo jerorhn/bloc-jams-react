@@ -1,0 +1,45 @@
+#buttons {
+  text-align: center;
+}
+
+#volume-control {
+  text-align: right;
+}
+
+#time-control {
+  text-align: center;
+}
+
+.current-time {
+  display: inline;
+}
+
+.total-time {
+  display: inline;
+}
+
+.icon {
+  font-size: 20px;
+  display: inline;
+}
+
+#previous {
+  background-color: Transparent;
+  border: none;
+  outline: none;
+  font-size: 25px;
+}
+
+#play-pause {
+  background-color: Transparent;
+  border: none;
+  outline: none;
+  font-size: 25px;
+}
+
+#next {
+  background-color: Transparent;
+  border: none;
+  outline: none;
+  font-size: 25px;
+}

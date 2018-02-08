@@ -1,0 +1,30 @@
+.album-info {
+  text-align: center;
+  height: 300px;
+  width: 300px;
+  margin: 10px auto;
+  color: white;
+}
+
+.album-cover {
+  height: 300px;
+  width: 300px;
+}
+
+.album-title {
+  position: relative;
+  bottom: 25%;
+  font-size: 24px;
+}
+
+.album-artist {
+  position: relative;
+  bottom: 24%;
+  font-size: 16px;
+}
+
+.album-songs {
+  position: relative;
+  bottom: 23%;
+  font-size: 12px;
+}

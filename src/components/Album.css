@@ -1,0 +1,32 @@
+#album-info {
+  text-align: center;
+  margin: 10px auto;
+  color: black;
+}
+
+#album-cover-art {
+  display: block;
+  height: 300px;
+  width: 300px;
+  margin: 5px auto;
+}
+
+#album-title {
+  margin: 2px;
+  font-size: 24px;
+}
+
+.artist {
+  margin: 2px;
+  font-size: 16px;
+}
+
+#release-info {
+  margin: 1px;
+  font-size: 12px;
+}
+
+.song-button {
+  border-radius: 4px;
+  border: none;
+}

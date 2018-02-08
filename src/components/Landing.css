@@ -1,0 +1,36 @@
+.hero-title {
+  background-image: url('../images/Background1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100px;
+  padding: 200px 0;
+  text-align: center;
+  color: rgba(225, 50, 114, .9);
+  font-size: 40px;
+  font-family: impact, sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px black;
+}
+
+.point {
+  width: 25%;
+  margin: 0 3.16%;
+  display: inline-block;
+  padding: 0 1%;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #543F57;
+  color: rgba(225, 50, 114, .8);
+  text-shadow: .5px .5px 1px black;
+}
+
+.point-title {
+  margin-top: 0;
+}
+
+.landing-icon {
+  font-size: 50px;
+  color: rgb(225, 50, 114);
+  text-shadow: .5px .5px 1px black;
+}

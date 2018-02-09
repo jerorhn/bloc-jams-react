@@ -17,7 +17,9 @@ class Album extends Component {
       currentTime: 0,
       duration: album.songs[0].duration,
       volume: 0.8,
-      isPlaying: false
+      isPlaying: false,
+      ionPlay: 'ion-play',
+      ionPause: false,
     };
 
     this.audioElement = document.createElement('audio');
@@ -46,6 +48,7 @@ class Album extends Component {
   play() {
     this.audioElement.play();
     this.setState({isPlaying: true});
+
   }
 
   pause() {
@@ -106,6 +109,18 @@ class Album extends Component {
     this.audioElement.volume = this.state.volume;
   }
 
+  handleSongClass(song) {
+    if (song === this.state.currentSong) {
+      if (this.state.isPlaying) {
+        this.setState({ionPlay: false,
+        ionPause: 'ion-pause'});
+      } else if (!this.state.isPlaying) {
+        this.setState({ionPlay: 'ion-play',
+        ionPause: false});
+      }
+    }
+  }
+
   render() {
     return (
       <section className='album'>
@@ -126,17 +141,17 @@ class Album extends Component {
           <tbody>
           {
             this.state.album.songs.map((song, index) =>
-              <tr className='song' key={index} onClick={() => this.handleSongClick(song)}>
-                <td className='song-actions'>
-                  <button className='song-button'>
-                    <span className='song-number'>{index + 1}</span>
-                    <span className='ion-play'></span>
-                    <span className='ion-pause'></span>
-                  </button>
-                </td>
-                <td className='song-title'>{song.title}</td>
-                <td className='song-duration'>{this.formatTime(song.duration)}</td>
-              </tr>
+                <tr className='song' key={index} onClick={() =>   this.handleSongClick(song)}>
+                  <td className='song-actions'>
+                    <button className='song-button'>
+                      <span className='song-number'>{index + 1}</span>
+                      <span className={this.state.ionPlay}></span>
+                      <span className={this.state.ionPause}></span>
+                    </button>
+                  </td>
+                  <td className='song-title'>{song.title}</td>
+                  <td className='song-duration'>{this.formatTime(song.duration)}</td>
+                </tr>
             )
           }
           </tbody>

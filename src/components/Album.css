@@ -27,6 +27,28 @@
 }
 
 .song-button {
-  border-radius: 4px;
   border: none;
+  background-color: Transparent;
+  outline: none;
+  font-size: 20px;
+}
+
+.song {
+  font-size: 20px;
+}
+
+tr:hover .ion-play,
+tr.playing .ion-pause,
+tr.paused .ion-play {
+  display: block;
+}
+
+tr .ion-play,
+tr .ion-pause,
+tr:hover .song-number,
+tr.playing .ion-play,
+tr.playing .song-number,
+tr.paused .ion-pause,
+tr.paused .song-number {
+  display: none;
 }

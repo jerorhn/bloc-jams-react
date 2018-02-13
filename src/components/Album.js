@@ -19,7 +19,7 @@ class Album extends Component {
       volume: 0.8,
       isPlaying: false,
       ionPlay: 'ion-play',
-      ionPause: false,
+      ionPause: '',
     };
 
     this.audioElement = document.createElement('audio');
@@ -48,7 +48,6 @@ class Album extends Component {
   play() {
     this.audioElement.play();
     this.setState({isPlaying: true});
-
   }
 
   pause() {
@@ -112,11 +111,11 @@ class Album extends Component {
   handleSongClass(song) {
     if (song === this.state.currentSong) {
       if (this.state.isPlaying) {
-        this.setState({ionPlay: false,
+        this.setState({ionPlay: '',
         ionPause: 'ion-pause'});
-      } else if (!this.state.isPlaying) {
+      } else if (song !== this.state.isPlaying) {
         this.setState({ionPlay: 'ion-play',
-        ionPause: false});
+        ionPause: ''});
       }
     }
   }

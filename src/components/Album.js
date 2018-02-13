@@ -141,6 +141,7 @@ class Album extends Component {
           {
             this.state.album.songs.map((song, index) =>
                 <tr className='song' key={index} onClick={() =>   this.handleSongClick(song)}>
+                {this.handleSongClass(song)}
                   <td className='song-actions'>
                     <button className='song-button'>
                       <span className='song-number'>{index + 1}</span>

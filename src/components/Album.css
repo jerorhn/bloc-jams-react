@@ -36,12 +36,3 @@
 .song {
   font-size: 20px;
 }
-
-tr:hover .ion-play {
-  display: block;
-}
-
-tr:hover .song-number,
-tr .ion-play {
-  display: none;
-}

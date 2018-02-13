@@ -18,8 +18,6 @@ class Album extends Component {
       duration: album.songs[0].duration,
       volume: 0.8,
       isPlaying: false,
-      ionPlay: 'ion-play',
-      ionPause: '',
     };
 
     this.audioElement = document.createElement('audio');
@@ -111,17 +109,24 @@ class Album extends Component {
   handleSongClass(song) {
     if (song === this.state.currentSong) {
       if (this.state.isPlaying) {
-        this.setState({ionPlay: '',
-        ionPause: 'ion-pause'});
-      } else if (song !== this.state.isPlaying) {
-        this.setState({ionPlay: 'ion-play',
-        ionPause: ''});
+        return 'ion-pause'
+      } else if (!this.state.isPlaying) {
+        return 'ion-play'
       }
     }
   }
 
+  songNumber(song, index) {
+    const number = index + 1;
+    if (song === this.state.currentSong) {
+      return
+    } else {
+      return number
+    }
+  }
+
   render() {
-    return (
+      return (
       <section className='album'>
         <section id='album-info'>
           <img id='album-cover-art' src={this.state.album.albumCover} alt='album-cover'/>
@@ -141,12 +146,9 @@ class Album extends Component {
           {
             this.state.album.songs.map((song, index) =>
                 <tr className='song' key={index} onClick={() =>   this.handleSongClick(song)}>
-                {this.handleSongClass(song)}
                   <td className='song-actions'>
                     <button className='song-button'>
-                      <span className='song-number'>{index + 1}</span>
-                      <span className={this.state.ionPlay}></span>
-                      <span className={this.state.ionPause}></span>
+                      <span className={this.handleSongClass(song)}>{this.songNumber(song, index)}</span>
                     </button>
                   </td>
                   <td className='song-title'>{song.title}</td>

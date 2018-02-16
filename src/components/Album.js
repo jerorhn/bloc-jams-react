@@ -18,8 +18,7 @@ class Album extends Component {
       duration: album.songs[0].duration,
       volume: 0.8,
       isPlaying: false,
-      hoverOn: false,
-      hoverClass: ''
+      songs: album.songs
     };
 
     this.audioElement = document.createElement('audio');
@@ -110,35 +109,43 @@ class Album extends Component {
     this.audioElement.volume = this.state.volume;
   }
 
-  handleSongClass(song) {
+  handleSongClass(song, index) {
     if (song === this.state.currentSong) {
       if (this.state.isPlaying) {
         return 'ion-pause'
       } else if (!this.state.isPlaying) {
         return 'ion-play'
       }
-    } else {
-      return this.state.hoverClass
+    } else if (this.state.songs[index].hover) {
+      return 'ion-play'
     }
   }
 
   songNumber(song, index) {
     const number = index + 1;
-    if (song === this.state.currentSong || this.state.hoverOn) {
+    if (song === this.state.currentSong || this.state.songs[index].hover) {
       return
     } else {
       return number
     }
   }
 
-  handleHoverOn() {
-    this.setState({hoverOn: true});
-    this.setState({hoverClass: 'ion-play'});
+  handleHoverOn(index) {
+    const temp = this.state.songs;
+    temp[index].hover = true;
+    this.setState(temp);
   }
 
-  handleHoverOff() {
-    this.setState({hoverOn: false});
-    this.setState({hoverClass: ''});
+  handleHoverOff(index) {
+    const temp = this.state.songs;
+    temp[index].hover = false;
+    this.setState(temp);
+  }
+
+  hoverEffect(index) {
+    if (this.state.songs[index].hover) {
+      return 'ion-play'
+    }
   }
 
   render() {
@@ -161,10 +168,10 @@ class Album extends Component {
           <tbody>
           {
             this.state.album.songs.map((song, index) =>
-                <tr className='song' onMouseEnter={this.handleHoverOn} onMouseLeave={this.handleHoverOff} key={index} onClick={() =>   this.handleSongClick(song)}>
+                <tr className='song' onMouseEnter={() => this.handleHoverOn(index)} onMouseLeave={() => this.handleHoverOff(index)} key={index} onClick={() =>   this.handleSongClick(song)}>
                   <td className='song-actions'>
                     <button className='song-button'>
-                      <span className={this.handleSongClass(song)}>{this.songNumber(song, index)}</span>
+                      <span className={this.handleSongClass(song, index)}>{this.songNumber(song, index)}</span>
                     </button>
                   </td>
                   <td className='song-title'>{song.title}</td>

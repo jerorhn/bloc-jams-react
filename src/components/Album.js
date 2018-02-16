@@ -18,10 +18,14 @@ class Album extends Component {
       duration: album.songs[0].duration,
       volume: 0.8,
       isPlaying: false,
+      hoverOn: false,
+      hoverClass: ''
     };
 
     this.audioElement = document.createElement('audio');
     this.audioElement.src = album.songs[0].audioSrc;
+    this.handleHoverOn = this.handleHoverOn.bind(this);
+    this.handleHoverOff = this.handleHoverOff.bind(this);
   }
 
   componentDidMount() {
@@ -113,16 +117,28 @@ class Album extends Component {
       } else if (!this.state.isPlaying) {
         return 'ion-play'
       }
+    } else {
+      return this.state.hoverClass
     }
   }
 
   songNumber(song, index) {
     const number = index + 1;
-    if (song === this.state.currentSong) {
+    if (song === this.state.currentSong || this.state.hoverOn) {
       return
     } else {
       return number
     }
+  }
+
+  handleHoverOn() {
+    this.setState({hoverOn: true});
+    this.setState({hoverClass: 'ion-play'});
+  }
+
+  handleHoverOff() {
+    this.setState({hoverOn: false});
+    this.setState({hoverClass: ''});
   }
 
   render() {
@@ -145,7 +161,7 @@ class Album extends Component {
           <tbody>
           {
             this.state.album.songs.map((song, index) =>
-                <tr className='song' key={index} onClick={() =>   this.handleSongClick(song)}>
+                <tr className='song' onMouseEnter={this.handleHoverOn} onMouseLeave={this.handleHoverOff} key={index} onClick={() =>   this.handleSongClick(song)}>
                   <td className='song-actions'>
                     <button className='song-button'>
                       <span className={this.handleSongClass(song)}>{this.songNumber(song, index)}</span>
